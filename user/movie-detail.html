@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết phim - Cinema Booking</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">CinemaBooking</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="showFavorites()">Yêu thích</a>
+      <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+      <a href="events.html">Sự kiện</a>
+      <a href="#" onclick="requireLogin('profile')">Tài khoản</a>
+    </nav>
+    <div id="authArea"></div>
+  </header>
+
+  <main class="container">
+    <section class="movie-detail" id="movieDetail"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h3>CinemaBooking</h3>
+        <p>Đặt vé xem phim nhanh chóng, tiện lợi và dễ sử dụng cho mọi khách hàng.</p>
+      </div>
+      <div>
+        <h4>Liên kết</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="events.html">Sự kiện</a>
+        <a href="#" onclick="showFavorites()">Yêu thích</a>
+        <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <p>Email: support@cinemabooking.vn</p>
+        <p>Hotline: 1900 1000</p>
+        <p>Giờ hỗ trợ: 8:00 - 22:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 CinemaBooking. All rights reserved.</div>
+  </footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/user.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const movieId = Number(params.get("movieId") || 1);
+    const movie = movies.find(item => item.id === movieId);
+    const detail = document.getElementById("movieDetail");
+
+    function renderMovieDetail() {
+      if (!movie) {
+        detail.innerHTML = "<p>Phim không tồn tại.</p>";
+        return;
+      }
+
+      const liked = isFavorite(movie.id);
+      detail.innerHTML = `
+        <div class="poster-wrap">
+          <img src="${movie.poster}" alt="Poster ${movie.title}">
+          <button class="favorite-btn ${liked ? "active" : ""}" onclick="toggleFavorite(${movie.id})" aria-label="${liked ? "Bỏ yêu thích" : "Thêm yêu thích"}">♥</button>
+        </div>
+        <div>
+          <div class="movie-status ${movie.status === "now" ? "status-now" : "status-soon"}">
+            ${movie.status === "now" ? "Đang chiếu" : "Sắp chiếu"}
+          </div>
+          <h1>${movie.title}</h1>
+          <p><strong>Nội dung:</strong> ${movie.description}</p>
+          <p><strong>Thể loại:</strong> ${movie.genre}</p>
+          <p><strong>Thời lượng:</strong> ${movie.duration}</p>
+          <p><strong>${movie.status === "now" ? "Lịch chiếu" : "Khởi chiếu"}:</strong> ${movie.status === "now" ? movie.showtimes.join(", ") : movie.releaseDate}</p>
+          <div class="movie-actions">
+            ${movie.status === "now" ? `<button onclick="requireLogin('booking', ${movie.id})">Đặt vé</button>` : `<button disabled>Sắp chiếu</button>`}
+          </div>
+        </div>
+      `;
+    }
+
+    if (movie) addRecentMovie(movie.id);
+    renderMovieDetail();
+  </script>
+</body>
+</html>

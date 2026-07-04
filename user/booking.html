@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đặt vé - Cinema Booking</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">CinemaBooking</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="favorites.html">Yêu thích</a>
+      <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+      <a href="events.html">Sự kiện</a>
+      <a href="#" onclick="requireLogin('profile')">Tài khoản</a>
+    </nav>
+    <div id="authArea"></div>
+  </header>
+
+  <main class="container">
+    <section class="page-panel">
+      <h1>Đặt vé</h1>
+      <p>Trang đặt vé đã mở thành công. Bạn có thể bổ sung chọn suất chiếu, ghế và thanh toán ở đây.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h3>CinemaBooking</h3>
+        <p>Đặt vé xem phim nhanh chóng, tiện lợi và dễ sử dụng cho mọi khách hàng.</p>
+      </div>
+      <div>
+        <h4>Liên kết</h4>
+        <a href="index.html">Trang chủ</a>
+        <a href="events.html">Sự kiện</a>
+        <a href="favorites.html">Yêu thích</a>
+        <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <p>Email: support@cinemabooking.vn</p>
+        <p>Hotline: 1900 1000</p>
+        <p>Giờ hỗ trợ: 8:00 - 22:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 CinemaBooking. All rights reserved.</div>
+  </footer>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>

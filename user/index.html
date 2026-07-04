@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Cinema Booking</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">CinemaBooking</div>
+
+  <nav>
+    <a href="index.html">Trang chủ</a>
+    <a href="favorites.html">Yêu thích</a>
+    <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+    <a href="events.html">Sự kiện</a>
+    <a href="#" onclick="requireLogin('profile')">Tài khoản</a>
+  </nav>
+
+  <div id="authArea">
+    <button onclick="openLoginModal()">Đăng nhập</button>
+    <button onclick="openRegisterModal()">Đăng ký</button>
+  </div>
+</header>
+
+<section class="banner home-hero">
+  <div>
+    <h1>Đặt vé xem phim trực tuyến</h1>
+    <p>Khám phá phim đang chiếu, phim sắp chiếu và đặt vé chỉ trong vài thao tác.</p>
+  </div>
+</section>
+
+<main class="container">
+  <section class="movie-section" id="recentSection">
+    <div class="section-heading">
+      <h2>Xem gần đây</h2>
+    </div>
+    <div class="movie-grid" id="recentList"></div>
+  </section>
+
+  <section class="movie-section" id="nowShowingSection">
+    <div class="section-heading">
+      <h2>Phim đang chiếu</h2>
+      <div class="carousel-actions">
+        <button class="carousel-btn" onclick="scrollMovies('nowShowingList', -1)" aria-label="Lướt phim đang chiếu sang trái">&#10094;</button>
+        <button class="carousel-btn" onclick="scrollMovies('nowShowingList', 1)" aria-label="Lướt phim đang chiếu sang phải">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="movie-carousel">
+      <div class="movie-list" id="nowShowingList"></div>
+    </div>
+  </section>
+
+  <section class="movie-section" id="comingSoonSection">
+    <div class="section-heading">
+      <h2>Phim sắp chiếu</h2>
+      <div class="carousel-actions">
+        <button class="carousel-btn" onclick="scrollMovies('comingSoonList', -1)" aria-label="Lướt phim sắp chiếu sang trái">&#10094;</button>
+        <button class="carousel-btn" onclick="scrollMovies('comingSoonList', 1)" aria-label="Lướt phim sắp chiếu sang phải">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="movie-carousel">
+      <div class="movie-list" id="comingSoonList"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <h3>CinemaBooking</h3>
+      <p>Đặt vé xem phim nhanh chóng, tiện lợi và dễ sử dụng cho mọi khách hàng.</p>
+    </div>
+    <div>
+      <h4>Liên kết</h4>
+      <a href="index.html">Trang chủ</a>
+      <a href="events.html">Sự kiện</a>
+      <a href="favorites.html">Yêu thích</a>
+      <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+    </div>
+    <div>
+      <h4>Liên hệ</h4>
+      <p>Email: support@cinemabooking.vn</p>
+      <p>Hotline: 1900 1000</p>
+      <p>Giờ hỗ trợ: 8:00 - 22:00</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 CinemaBooking. All rights reserved.</div>
+</footer>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Đăng nhập</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p>Chưa có tài khoản? <a href="#" onclick="switchToRegister()">Đăng ký</a></p>
+  </div>
+</div>
+
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('registerModal')">&times;</span>
+    <h2>Đăng ký</h2>
+    <input type="text" id="registerName" placeholder="Họ tên">
+    <input type="email" id="registerEmail" placeholder="Email">
+    <input type="password" id="registerPassword" placeholder="Mật khẩu">
+    <button onclick="register()">Đăng ký</button>
+    <p>Đã có tài khoản? <a href="#" onclick="switchToLogin()">Đăng nhập</a></p>
+  </div>
+</div>
+
+<script src="../js/auth.js"></script>
+<script src="../js/user.js"></script>
+</body>
+</html>
