@@ -4,7 +4,7 @@ function initUsers() {
   if (users.length === 0) {
     users = [
       {
-        email: "admin@gmail.com",
+        email: "admin@cinemabooking.vn",
         password: "123456",
         fullName: "Quản trị viên",
         role: "admin",
@@ -21,6 +21,19 @@ function initUsers() {
       }
     ];
 
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  const hasDefaultAdmin = users.some(user => user.email === "admin@cinemabooking.vn");
+  if (!hasDefaultAdmin) {
+    users.push({
+      email: "admin@cinemabooking.vn",
+      password: "123456",
+      fullName: "Admin",
+      role: "admin",
+      walletBalance: 0,
+      transactions: []
+    });
     localStorage.setItem("users", JSON.stringify(users));
   }
 }

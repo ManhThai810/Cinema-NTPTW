@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sự kiện - Cinema Booking</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">CinemaBooking</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="index.html#favoriteSection">Yêu thích</a>
+      <a href="#" onclick="requireLogin('tickets')">Vé của tôi</a>
+      <a href="events.html">Sự kiện</a>
+      <a href="#" onclick="requireLogin('profile')">Tài khoản</a>
+    </nav>
+    <div id="authArea"></div>
+  </header>
+
+  <main class="container">
+    <section class="page-panel">
+      <h1>Sự kiện</h1>
+      <p>Bạn có thể xem khuyến mãi và chương trình mới tại đây.</p>
+    </section>
+  </main>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>
