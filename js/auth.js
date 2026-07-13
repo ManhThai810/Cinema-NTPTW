@@ -1,3 +1,6 @@
+const SESSION_DURATION = 45 * 60 * 1000;
+let sessionTimer = null;
+
 function initUsers() {
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -122,8 +125,10 @@ function login() {
   localStorage.setItem("currentUser", JSON.stringify({
     email: user.email,
     fullName: user.fullName,
-    role: user.role
+    role: user.role,
+    expiresAt: Date.now() + SESSION_DURATION
   }));
+  startSessionTimer();
 
   if (user.role === "admin") {
     window.location.href = "../admin/dashboard.html";
@@ -142,11 +147,44 @@ function login() {
 
 function logout() {
   localStorage.removeItem("currentUser");
+  clearSessionTimer();
   window.location.href = "../user/index.html";
 }
 
 function getCurrentUser() {
-  return JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!currentUser) return null;
+
+  if (!currentUser.expiresAt || Date.now() > currentUser.expiresAt) {
+    localStorage.removeItem("currentUser");
+    clearSessionTimer();
+    return null;
+  }
+
+  return currentUser;
+}
+
+function clearSessionTimer() {
+  if (sessionTimer) {
+    clearTimeout(sessionTimer);
+    sessionTimer = null;
+  }
+}
+
+function startSessionTimer() {
+  clearSessionTimer();
+
+  const currentUser = getCurrentUser();
+  if (!currentUser) return;
+
+  const timeLeft = currentUser.expiresAt - Date.now();
+  sessionTimer = setTimeout(function () {
+    localStorage.removeItem("currentUser");
+    updateAuthArea();
+    alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+    window.location.href = "../user/index.html";
+  }, timeLeft);
 }
 
 function updateAuthArea() {
@@ -181,12 +219,19 @@ function requireLogin(action, movieId = null) {
     return;
   }
 
-  if (action === "booking") window.location.href = `booking.html?movieId=${movieId}`;
+  if (action === "booking") {
+    if (typeof openScheduleModal === "function") {
+      openScheduleModal(movieId);
+    } else {
+      window.location.href = `booking.html?movieId=${movieId}`;
+    }
+  }
   if (action === "tickets") window.location.href = "tickets.html";
   if (action === "profile") window.location.href = "profile.html";
   if (action === "events") window.location.href = "events.html";
 }
 
 window.onload = function () {
+  startSessionTimer();
   updateAuthArea();
 };

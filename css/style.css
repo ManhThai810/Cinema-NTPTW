@@ -115,8 +115,108 @@ body {
   color: #ecfdf5;
 }
 
+.admin-panel {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  margin-bottom: 28px;
+  padding: 22px;
+}
+
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.admin-form textarea {
+  grid-column: span 2;
+  min-height: 86px;
+  resize: vertical;
+}
+
+.admin-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+
+.admin-form-actions button,
+.admin-actions button {
+  border: none;
+  background: #047857;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 9px 12px;
+}
+
+.admin-form-actions button:hover,
+.admin-actions button:hover {
+  background: #065f46;
+}
+
+.admin-actions .danger-btn {
+  background: #b91c1c;
+}
+
+.admin-actions .danger-btn:hover {
+  background: #991b1b;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 980px;
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.admin-table th {
+  background: #f0fdf4;
+  color: #064e3b;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 @media (max-width: 760px) {
   .footer-content {
     grid-template-columns: 1fr;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form textarea {
+    grid-column: span 1;
   }
 }

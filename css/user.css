@@ -260,6 +260,141 @@
   margin-top: 12px;
 }
 
+.schedule-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.72);
+  z-index: 1400;
+  padding: 24px;
+}
+
+.schedule-content {
+  width: min(1250px, 100%);
+  min-height: 560px;
+  background: white;
+  color: #20242a;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+
+.schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 18px 20px;
+}
+
+.schedule-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.schedule-close {
+  border: 0;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.schedule-content h3 {
+  margin: 24px 0 22px;
+  text-align: center;
+  font-size: 34px;
+}
+
+.schedule-days {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid #ccc;
+  margin: 0 32px;
+}
+
+.schedule-day {
+  min-width: 142px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: white;
+  color: #111;
+  cursor: pointer;
+  padding: 8px 0 10px;
+  text-align: center;
+}
+
+.schedule-day.active {
+  border-bottom-color: #0068b7;
+  color: #0068b7;
+}
+
+.schedule-day strong {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.schedule-day span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.schedule-format {
+  margin: 46px 32px 16px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.schedule-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 38px;
+  margin: 0 32px;
+}
+
+.schedule-time {
+  width: 118px;
+  height: 72px;
+  border: 0;
+  background: #e2e2e2;
+  color: #111;
+  cursor: pointer;
+}
+
+.schedule-time.late {
+  background: #b9cdeb;
+}
+
+.schedule-time strong,
+.schedule-time small {
+  display: block;
+}
+
+.schedule-time strong {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.schedule-time small {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.late-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 32px;
+  font-size: 18px;
+}
+
+.late-note span {
+  width: 30px;
+  height: 20px;
+  background: #b9cdeb;
+}
+
 .close {
   position: absolute;
   right: 18px;
@@ -315,5 +450,28 @@
 
   .movie-card img {
     height: 285px;
+  }
+
+  .schedule-content {
+    min-height: auto;
+  }
+
+  .schedule-days,
+  .schedule-times {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .schedule-days {
+    gap: 14px;
+    overflow-x: auto;
+  }
+
+  .schedule-day {
+    min-width: 104px;
+  }
+
+  .schedule-day strong {
+    font-size: 34px;
   }
 }

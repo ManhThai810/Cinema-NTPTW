@@ -47,6 +47,7 @@
   </footer>
 
   <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
   <script src="../js/user.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -74,7 +75,7 @@
           <p><strong>Nội dung:</strong> ${movie.description}</p>
           <p><strong>Thể loại:</strong> ${movie.genre}</p>
           <p><strong>Thời lượng:</strong> ${movie.duration}</p>
-          <p><strong>${movie.status === "now" ? "Lịch chiếu" : "Khởi chiếu"}:</strong> ${movie.status === "now" ? movie.showtimes.join(", ") : movie.releaseDate}</p>
+          <p><strong>${movie.status === "now" ? "Lịch chiếu" : "Khởi chiếu"}:</strong> ${movie.status === "now" ? getMovieShowtimeText(movie) : movie.releaseDate}</p>
           <div class="movie-actions">
             ${movie.status === "now" ? `<button onclick="requireLogin('booking', ${movie.id})">Đặt vé</button>` : `<button disabled>Sắp chiếu</button>`}
           </div>
